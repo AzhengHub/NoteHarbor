@@ -1,0 +1,29 @@
+{
+  "name": "noteharbor",
+  "version": "0.1.0",
+  "private": true,
+  "description": "A customizable documentation and personal blog theme for Hugo.",
+  "license": "MIT",
+  "scripts": {
+    "build:ui": "esbuild frontend/search.tsx --bundle --minify --format=iife --target=es2020 --outfile=assets/generated/search.js && tailwindcss -i frontend/ui.css -o assets/generated/ui.css --minify",
+    "build": "npm run build:ui && hugo --config exampleSite/hugo.yaml --cleanDestinationDir",
+    "serve": "npm run build:ui && hugo server --config exampleSite/hugo.yaml --disableFastRender",
+    "test": "python3 tests/verify_site.py public"
+  },
+  "dependencies": {
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "radix-ui": "^1.8.1",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "tailwind-merge": "^3.7.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.3.5",
+    "esbuild": "^0.28.2",
+    "tailwindcss": "^4.3.5"
+  },
+  "engines": {
+    "node": ">=20.19"
+  }
+}

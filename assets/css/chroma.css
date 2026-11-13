@@ -1,0 +1,6 @@
+/* A restrained blue and neutral palette for code in both themes. */
+.chroma{color:var(--foreground);background:var(--surface)}
+.chroma .line{display:flex}.chroma .lnt,.chroma .ln{color:var(--muted-foreground);user-select:none;margin-right:.6em}
+.chroma .hl{background:var(--muted)}
+.chroma .k,.chroma .kc,.chroma .kd,.chroma .kn,.chroma .kp,.chroma .kr,.chroma .kt,.chroma .nt,.chroma .nf{color:var(--link)}
+.chroma .c,.chroma .ch,.chroma .cm,.chroma .c1,.chroma .cs{color:var(--muted-foreground)}

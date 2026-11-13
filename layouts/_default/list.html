@@ -1,0 +1,7 @@
+{{ define "main" }}<section class="article">
+  {{ partial "breadcrumb.html" . }}
+  <header class="article-header"><h1>{{ .Title }}</h1>{{ with .Description }}<p class="article-description">{{ . }}</p>{{ end }}</header>
+  {{ with .Content }}<div class="prose">{{ . }}</div>{{ end }}
+  <div class="list-heading"><span>文章目录</span></div>
+  <div class="article-list">{{ range .Pages.ByWeight }}{{ if not .Params.toc_hide }}<a href="{{ .RelPermalink }}" class="list-item"><span class="list-copy"><strong>{{ .LinkTitle }}</strong>{{ with .Description }}<small>{{ . }}</small>{{ end }}</span></a>{{ end }}{{ end }}</div>
+</section>{{ end }}

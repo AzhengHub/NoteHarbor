@@ -1,0 +1,1 @@
+<aside class="alert-block alert-{{ .Get "color" | default "info" }}">{{ with .Get "title" }}<strong>{{ . | markdownify }}</strong>{{ end }}<div>{{ .Inner | markdownify }}</div></aside>

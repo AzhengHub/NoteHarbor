@@ -1,0 +1,37 @@
+baseURL: http://localhost:1313/
+title: NoteHarbor
+contentDir: exampleSite/content
+defaultContentLanguage: zh
+languageCode: zh-CN
+enableRobotsTXT: true
+
+params:
+  description: 一个属于你自己的文档与笔记空间。
+  github: https://github.com/AzhengHub/NoteHarbor
+  version: v0.1.0
+  showReadingTime: true
+  home:
+    cards:
+      - path: /docs/getting-started
+        title: 开始使用
+        description: 认识 NoteHarbor，搭建属于自己的知识空间。
+      - path: /docs/writing
+        title: 书写与排版
+        description: 用 Markdown 记录想法，让内容保持简单。
+      - path: /blog
+        title: 随笔与文章
+        description: 给更长的思考，一处从容展开的地方。
+
+outputs:
+  home: [HTML, RSS, JSON]
+  section: [HTML, RSS]
+
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
+  highlight:
+    noClasses: false
+  tableOfContents:
+    startLevel: 2
+    endLevel: 3

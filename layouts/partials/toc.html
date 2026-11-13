@@ -1,0 +1,1 @@
+{{ if and (not .IsHome) (not .Params.notoc) }}{{ $toc := .TableOfContents }}{{ if and $toc (ne $toc `<nav id="TableOfContents"></nav>`) }}<div class="toc-inner"><div class="toc-title">本页内容</div>{{ $toc | safeHTML }}<a href="#main" class="toc-top">回到顶部</a></div>{{ end }}{{ end }}

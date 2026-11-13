@@ -1,0 +1,5 @@
+{{- $items := slice -}}
+{{- range where (where site.RegularPages "Params.private" "ne" true) "Params.exclude_search" "ne" true -}}
+  {{- $items = $items | append (dict "ref" .RelPermalink "title" .Title "section" .CurrentSection.LinkTitle "excerpt" (.Description | default (.Plain | truncate 120)) "body" (.Plain | truncate 10000 "")) -}}
+{{- end -}}
+{{- $items | jsonify -}}

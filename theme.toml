@@ -1,0 +1,11 @@
+name = "NoteHarbor"
+license = "MIT"
+licenselink = "https://github.com/AzhengHub/NoteHarbor/blob/main/LICENSE"
+description = "A calm, customizable home for your notes and documentation."
+homepage = "https://github.com/AzhengHub/NoteHarbor"
+tags = ["documentation", "blog", "responsive", "dark", "search"]
+features = ["responsive", "dark mode", "search", "table of contents"]
+min_version = "0.153.0"
+
+[author]
+  name = "NoteHarbor contributors"

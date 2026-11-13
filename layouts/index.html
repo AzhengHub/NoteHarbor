@@ -1,0 +1,26 @@
+{{ define "main" }}
+{{ $home := site.Params.home | default dict }}
+{{ $firstSection := false }}{{ with site.Home.Sections.ByWeight }}{{ $firstSection = index . 0 }}{{ end }}
+<div class="home">
+  <header class="home-header">
+    <h1>{{ $home.title | default site.Title }}</h1>
+    <p>{{ $home.description | default site.Params.description }}</p>
+    {{ with $firstSection }}<a class="button-primary" href="{{ .RelPermalink }}">浏览文档</a>{{ end }}
+  </header>
+  {{ with .Content }}<div class="prose home-intro">{{ . }}</div>{{ end }}
+  <section class="home-section">
+    <h2>文档</h2>
+    <div class="feature-grid">
+      {{ with $home.cards }}
+        {{ range $card := . }}{{ with site.GetPage $card.path }}<a href="{{ .RelPermalink }}" class="feature-card"><strong>{{ $card.title | default .LinkTitle }}</strong><span>{{ $card.description | default .Description }}</span></a>{{ end }}{{ end }}
+      {{ else }}
+        {{ range first 3 (where site.RegularPages "Params.private" "ne" true).ByDate.Reverse }}<a href="{{ .RelPermalink }}" class="feature-card"><strong>{{ .LinkTitle }}</strong><span>{{ .Description | default (.Plain | truncate 80) }}</span></a>{{ end }}
+      {{ end }}
+    </div>
+  </section>
+  <section class="home-section">
+    <h2>最近更新</h2>
+    <div class="recent-list">{{ range first 5 (where (where site.RegularPages "Params.private" "ne" true) "Params.exclude_search" "ne" true).ByDate.Reverse }}<a href="{{ .RelPermalink }}"><span class="recent-name"><strong>{{ .LinkTitle }}</strong><small>{{ .Description | default .CurrentSection.LinkTitle }}</small></span><span class="recent-date">{{ if .Date }}{{ .Date.Format "2006-01-02" }}{{ end }}</span></a>{{ end }}</div>
+  </section>
+</div>
+{{ end }}
