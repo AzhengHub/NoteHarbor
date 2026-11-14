@@ -87,8 +87,11 @@ params:
 terminal:
   user: user
   host: localhost
+  shell: bash              # 窗口标题里的 shell 名，默认 bash
   prompt: "user@host:~$"   # 可选，直接覆盖 user@host
 ```
+
+窗口标题由提示符自动生成（`user@host: ~ — bash`），不需要在短代码里重复写 `title`；需要完全自定义时仍可用 `title` 覆盖。
 
 - `{{</* terminal static="true" */>}}`：只展示终端窗口，不播放打字动画
 - 站点参数 `params.terminal.enable: false`：全局关闭动画

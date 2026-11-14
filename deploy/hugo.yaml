@@ -20,6 +20,7 @@ params:
     enable: true
     user: user
     host: localhost
+    shell: bash
 
 outputs:
   home: [HTML, RSS, JSON]

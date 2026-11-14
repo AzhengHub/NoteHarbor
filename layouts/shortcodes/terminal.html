@@ -6,7 +6,8 @@
 {{- $user := $term.user | default "user" -}}
 {{- $host := $term.host | default "localhost" -}}
 {{- $prompt := $term.prompt | default (printf "%s@%s" $user $host) -}}
-{{- $title := .Get "title" | default (printf "%s: ~" $prompt) -}}
+{{- $shell := $term.shell | default "bash" -}}
+{{- $title := .Get "title" | default (printf "%s: ~ — %s" $prompt $shell) -}}
 <div class="term-window{{ if not $enabled }} term-static{{ end }}" data-term-animate>
   <div class="term-titlebar">
     <div class="term-dots"><span></span><span></span><span></span></div>
