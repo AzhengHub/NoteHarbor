@@ -1,4 +1,10 @@
 {{ define "main" }}
+{{ with .Content }}
+<div class="home home-terminal">
+  <h1 class="sr-only">{{ site.Title }}</h1>
+  <div class="prose">{{ . }}</div>
+</div>
+{{ else }}
 {{ $home := site.Params.home | default dict }}
 {{ $sections := site.Home.Sections.ByWeight }}
 {{ $firstSection := false }}{{ with $sections }}{{ $firstSection = index . 0 }}{{ end }}
@@ -11,7 +17,6 @@
     <p>{{ $home.description | default site.Params.description }}</p>
     {{ with $firstSection }}<a class="button-primary" href="{{ .RelPermalink }}">浏览文档</a>{{ end }}
   </header>
-  {{ with .Content }}<div class="prose home-intro">{{ . }}</div>{{ end }}
   <section class="home-section">
     <h2>文档</h2>
     <div class="feature-grid">
@@ -29,4 +34,5 @@
   </section>
   {{ end }}
 </div>
+{{ end }}
 {{ end }}
