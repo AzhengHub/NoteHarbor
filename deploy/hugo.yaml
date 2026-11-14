@@ -13,6 +13,7 @@ params:
   footer:
     copyright: "© 2026 My Docs"
     poweredby: "Powered by Hugo"
+    align: center   # center | between | left | right
   # Home terminal blocks. Disable the typing animation with enable: false;
   # override the prompt per page through front matter (terminal.user/host/prompt).
   terminal:

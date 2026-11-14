@@ -76,6 +76,7 @@ params:
   footer:
     copyright: "© 2026 你的站点"
     poweredby: "Powered by Hugo"   # 设为空字符串可隐藏
+    align: center                  # center（默认）| between | left | right
 ```
 
 ## 首页终端
