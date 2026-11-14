@@ -1,6 +1,4 @@
 <nav class="sidebar-inner" aria-label="笔记目录">
-  <a href="{{ site.Home.RelPermalink }}" class="nav-home{{ if .IsHome }} is-active{{ end }}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="m3 10 9-7 9 7v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 21v-7h6v7"/></svg><span>首页</span></a>
-  <div class="sidebar-heading">文档目录</div>
   <ul class="nav-tree">
     {{ range site.Home.Sections.ByWeight }}{{ partial "nav-node.html" (dict "node" . "current" $) }}{{ end }}
     {{ range where site.Home.RegularPages.ByWeight ".Params.toc_hide" "!=" true }}{{ partial "nav-node.html" (dict "node" . "current" $) }}{{ end }}
