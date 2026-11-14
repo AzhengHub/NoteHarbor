@@ -44,9 +44,9 @@
 .prose th{background:transparent;font-weight:600}
 .prose tr{background:var(--background)}
 .prose tr:nth-child(2n){background:var(--surface)}
-.code-block{position:relative;margin:0 0 16px;border:1px solid #e5e5e5;border-radius:6px;overflow:hidden;background:#fff}
-.code-block pre{margin:0!important;padding:16px!important;overflow:auto;font:14px/1.5 "Cascadia Code",Consolas,"Courier New",monospace;font-variant-ligatures:none}
-.code-head{display:flex;align-items:center;gap:8px;padding:6px 10px 6px 16px;border-bottom:1px solid rgba(0,0,0,.1);background:rgba(0,0,0,.03);font:12.5px/1.5 "Cascadia Code",Consolas,monospace}
+.code-block{position:relative;margin:0 0 16px;border:1px solid #E5E5E5;border-radius:6px;overflow:hidden;background:#FFFFFF}
+.code-block pre{margin:0!important;padding:16px!important;overflow:auto;font:400 14px/19px Consolas,"Courier New","Liberation Mono",monospace;font-variant-ligatures:none;letter-spacing:0;tab-size:4}
+.code-head{display:flex;align-items:center;gap:8px;padding:6px 10px 6px 16px;border-bottom:1px solid #E5E5E5;background:#F8F8F8;font:12px/1.6 var(--font)}
 .code-lang{color:var(--muted-foreground);text-transform:lowercase}
 .code-filename{color:var(--primary)}
 .copy-code{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;margin-left:auto;padding:0;border:0;border-radius:4px;background:transparent;color:var(--muted-foreground);cursor:pointer}
@@ -65,9 +65,9 @@
 .alert-warning{border-left-color:#d4a72c;background:var(--muted)}
 .alert-warning>strong{color:#9a6700}
 :root[data-theme=dark] .alert-warning>strong{color:#d29922}
-:root[data-theme=dark] .code-block{border-color:#252627;background:#1e1e1e}
-:root[data-theme=dark] .code-block pre{color:#d4d4d4}
-:root[data-theme=dark] .code-head{background:rgba(255,255,255,.04);border-bottom-color:rgba(255,255,255,.1)}
+:root[data-theme=dark] .code-block{border-color:#2B2B2B;background:#1F1F1F}
+:root[data-theme=dark] .code-block pre{color:#CCCCCC}
+:root[data-theme=dark] .code-head{background:#181818;border-bottom-color:#2B2B2B}
 :root[data-theme=dark] .copy-code{color:#9a9aa3}
 :root[data-theme=dark] .copy-code:hover{color:#fff;background:rgba(255,255,255,.1)}
 .list-heading{margin:30px 0 10px;color:var(--muted-foreground);font-size:12px}.article-list{border-top:1px solid var(--border)}.list-item{display:flex;align-items:center;padding:14px 2px;border-bottom:1px solid var(--border);color:var(--foreground)}.list-item:hover{text-decoration:none;color:var(--link)}.list-copy{flex:1}.list-copy strong,.list-copy small{display:block}.list-copy strong{font-size:13px}.list-copy small{font-size:12px;color:var(--muted-foreground)}
