@@ -3,19 +3,58 @@
   const sidebar = document.getElementById('sidebar');
   const menu = document.querySelector('.mobile-menu');
   const backdrop = document.querySelector('.sidebar-backdrop');
+  const more = document.querySelector('.header-more');
+  const actions = document.getElementById('header-actions');
+  const mobileLayout = window.matchMedia('(max-width: 767px)');
+
+  function setMore(open) {
+    more.setAttribute('aria-expanded', String(open));
+  }
+
   function setMenu(open) {
     sidebar.classList.toggle('is-open', open);
     backdrop.hidden = !open;
     menu.setAttribute('aria-expanded', String(open));
-    menu.setAttribute('aria-label', open ? '关闭导航' : '打开导航');
   }
-  menu.addEventListener('click', () => setMenu(!sidebar.classList.contains('is-open')));
-  backdrop.addEventListener('click', () => setMenu(false));
-  document.addEventListener('keydown', event => { if (event.key === 'Escape' && sidebar.classList.contains('is-open')) { setMenu(false); menu.focus(); } });
+
+  menu.addEventListener('click', () => {
+    setMore(false);
+    setMenu(!sidebar.classList.contains('is-open'));
+  });
+  more.addEventListener('click', () => {
+    setMenu(false);
+    setMore(more.getAttribute('aria-expanded') !== 'true');
+  });
+  backdrop.addEventListener('click', () => {
+    setMenu(false);
+    menu.focus();
+  });
+  document.addEventListener('click', event => {
+    if (!more.contains(event.target) && !actions.contains(event.target)) setMore(false);
+  });
+  document.addEventListener('keydown', event => {
+    if (event.key !== 'Escape' || event.defaultPrevented ||
+        document.querySelector('.search-dialog[data-state="open"]')) return;
+    if (more.getAttribute('aria-expanded') === 'true') {
+      setMore(false);
+      more.focus();
+    } else if (sidebar.classList.contains('is-open')) {
+      setMenu(false);
+      menu.focus();
+    }
+  });
+  mobileLayout.addEventListener('change', () => {
+    setMenu(false);
+    setMore(false);
+  });
   document.querySelector('.theme-toggle').addEventListener('click', () => {
     const theme = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
     document.documentElement.dataset.theme = theme;
     try { localStorage.setItem('noteharbor-theme', theme); } catch (_) {}
+    if (more.getAttribute('aria-expanded') === 'true') {
+      setMore(false);
+      more.focus();
+    }
   });
   /*! Font Awesome Free 6.7.2 by Fonticons, Inc. (CC BY 4.0, https://fontawesome.com/license/free). */
   const COPY_ICON = '<svg viewBox="0 0 448 512" aria-hidden="true"><path fill="currentColor" d="M208 0L332.1 0c12.7 0 24.9 5.1 33.9 14.1l67.9 67.9c9 9 14.1 21.2 14.1 33.9L448 336c0 26.5-21.5 48-48 48l-192 0c-26.5 0-48-21.5-48-48l0-288c0-26.5 21.5-48 48-48zM48 128l80 0 0 64-64 0 0 256 192 0 0-32 64 0 0 48c0 26.5-21.5 48-48 48L48 512c-26.5 0-48-21.5-48-48L0 176c0-26.5 21.5-48 48-48z"/></svg>';
