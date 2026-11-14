@@ -1,6 +1,163 @@
-/* A restrained blue and neutral palette for code in both themes. */
-.chroma{color:var(--foreground);background:var(--surface)}
-.chroma .line{display:flex}.chroma .lnt,.chroma .ln{color:var(--muted-foreground);user-select:none;margin-right:.6em}
-.chroma .hl{background:var(--muted)}
-.chroma .k,.chroma .kc,.chroma .kd,.chroma .kn,.chroma .kp,.chroma .kr,.chroma .kt,.chroma .nt,.chroma .nf{color:var(--link)}
-.chroma .c,.chroma .ch,.chroma .cm,.chroma .c1,.chroma .cs{color:var(--muted-foreground)}
+/* Chroma token colours follow VS Code Light+ / Dark+ (see tmp/devops-docs). */
+.chroma .lnlinks{outline:none;text-decoration:none;color:inherit}
+.chroma .lntd{vertical-align:top;padding:0;margin:0;border:0}
+.chroma .lntable{border-spacing:0;padding:0;margin:0;border:0}
+.chroma .lnt,.chroma .ln{white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em}
+.chroma .line{display:flex}
+.chroma{color:#000000;background-color:#ffffff}
+.chroma .hl{background-color:#f0f0f0}
+.chroma .lnt,.chroma .ln{color:#237893}
+.chroma .x{color:#000000}
+.chroma .err{color:#000000}
+.chroma .k{color:#0000ff}
+.chroma .kc{color:#0000ff}
+.chroma .kd{color:#0000ff}
+.chroma .kn{color:#af00db}
+.chroma .kp{color:#0000ff}
+.chroma .kr{color:#0000ff}
+.chroma .kt{color:#267f99}
+.chroma .n{color:#000000}
+.chroma .na{color:#e50000}
+.chroma .nb{color:#795e26}
+.chroma .bp{color:#0000ff}
+.chroma .nc{color:#267f99}
+.chroma .no{color:#0070c1}
+.chroma .nd{color:#795e26}
+.chroma .ni{color:#ee0000}
+.chroma .ne{color:#267f99}
+.chroma .nf{color:#795e26}
+.chroma .fm{color:#795e26}
+.chroma .nl{color:#000000}
+.chroma .nn{color:#267f99}
+.chroma .nx{color:#000000}
+.chroma .py{color:#001080}
+.chroma .nt{color:#800000}
+.chroma .nv{color:#001080}
+.chroma .vc{color:#001080}
+.chroma .vg{color:#001080}
+.chroma .vi{color:#001080}
+.chroma .vm{color:#001080}
+.chroma .l{color:#000000}
+.chroma .ld{color:#a31515}
+.chroma .s{color:#a31515}
+.chroma .sa{color:#0000ff}
+.chroma .sb{color:#a31515}
+.chroma .sc{color:#a31515}
+.chroma .dl{color:#a31515}
+.chroma .sd{color:#a31515}
+.chroma .s2{color:#a31515}
+.chroma .se{color:#ee0000}
+.chroma .sh{color:#a31515}
+.chroma .si{color:#0000ff}
+.chroma .sx{color:#a31515}
+.chroma .sr{color:#811f3f}
+.chroma .s1{color:#a31515}
+.chroma .ss{color:#a31515}
+.chroma .m{color:#098658}
+.chroma .mb{color:#098658}
+.chroma .mf{color:#098658}
+.chroma .mh{color:#098658}
+.chroma .mi{color:#098658}
+.chroma .il{color:#098658}
+.chroma .mo{color:#098658}
+.chroma .o{color:#000000}
+.chroma .ow{color:#0000ff}
+.chroma .p{color:#000000}
+.chroma .c{color:#008000}
+.chroma .ch{color:#008000}
+.chroma .cm{color:#008000}
+.chroma .c1{color:#008000}
+.chroma .cs{color:#008000}
+.chroma .cp{color:#af00db}
+.chroma .cpf{color:#a31515}
+.chroma .g{color:#000000}
+.chroma .gd{color:#a31515}
+.chroma .ge{font-style:italic}
+.chroma .gr{color:#cd3131}
+.chroma .gh{color:#0000ff;font-weight:bold}
+.chroma .gi{color:#098658}
+.chroma .go{color:#000000}
+.chroma .gp{color:#0000ff}
+.chroma .gu{color:#0000ff;font-weight:bold}
+.chroma .gt{color:#cd3131}
+.chroma .gl{text-decoration:underline}
+.chroma .w{color:#d3d3d3}
+/* VS Code Dark+ */
+:root[data-theme=dark] .chroma{color:#d4d4d4;background-color:#1e1e1e}
+:root[data-theme=dark] .chroma .hl{background-color:#2a2d2e}
+:root[data-theme=dark] .chroma .lnt,:root[data-theme=dark] .chroma .ln{color:#858585}
+:root[data-theme=dark] .chroma .x{color:#d4d4d4}
+:root[data-theme=dark] .chroma .err{color:#d4d4d4}
+:root[data-theme=dark] .chroma .k{color:#569cd6}
+:root[data-theme=dark] .chroma .kc{color:#569cd6}
+:root[data-theme=dark] .chroma .kd{color:#569cd6}
+:root[data-theme=dark] .chroma .kn{color:#c586c0}
+:root[data-theme=dark] .chroma .kp{color:#569cd6}
+:root[data-theme=dark] .chroma .kr{color:#569cd6}
+:root[data-theme=dark] .chroma .kt{color:#4ec9b0}
+:root[data-theme=dark] .chroma .n{color:#d4d4d4}
+:root[data-theme=dark] .chroma .na{color:#9cdcfe}
+:root[data-theme=dark] .chroma .nb{color:#dcdcaa}
+:root[data-theme=dark] .chroma .bp{color:#569cd6}
+:root[data-theme=dark] .chroma .nc{color:#4ec9b0}
+:root[data-theme=dark] .chroma .no{color:#4fc1ff}
+:root[data-theme=dark] .chroma .nd{color:#dcdcaa}
+:root[data-theme=dark] .chroma .ni{color:#d7ba7d}
+:root[data-theme=dark] .chroma .ne{color:#4ec9b0}
+:root[data-theme=dark] .chroma .nf{color:#dcdcaa}
+:root[data-theme=dark] .chroma .fm{color:#dcdcaa}
+:root[data-theme=dark] .chroma .nl{color:#c8c8c8}
+:root[data-theme=dark] .chroma .nn{color:#4ec9b0}
+:root[data-theme=dark] .chroma .nx{color:#d4d4d4}
+:root[data-theme=dark] .chroma .py{color:#9cdcfe}
+:root[data-theme=dark] .chroma .nt{color:#569cd6}
+:root[data-theme=dark] .chroma .nv{color:#9cdcfe}
+:root[data-theme=dark] .chroma .vc{color:#9cdcfe}
+:root[data-theme=dark] .chroma .vg{color:#9cdcfe}
+:root[data-theme=dark] .chroma .vi{color:#9cdcfe}
+:root[data-theme=dark] .chroma .vm{color:#9cdcfe}
+:root[data-theme=dark] .chroma .l{color:#d4d4d4}
+:root[data-theme=dark] .chroma .ld{color:#ce9178}
+:root[data-theme=dark] .chroma .s{color:#ce9178}
+:root[data-theme=dark] .chroma .sa{color:#569cd6}
+:root[data-theme=dark] .chroma .sb{color:#ce9178}
+:root[data-theme=dark] .chroma .sc{color:#ce9178}
+:root[data-theme=dark] .chroma .dl{color:#ce9178}
+:root[data-theme=dark] .chroma .sd{color:#ce9178}
+:root[data-theme=dark] .chroma .s2{color:#ce9178}
+:root[data-theme=dark] .chroma .se{color:#d7ba7d}
+:root[data-theme=dark] .chroma .sh{color:#ce9178}
+:root[data-theme=dark] .chroma .si{color:#569cd6}
+:root[data-theme=dark] .chroma .sx{color:#ce9178}
+:root[data-theme=dark] .chroma .sr{color:#d16969}
+:root[data-theme=dark] .chroma .s1{color:#ce9178}
+:root[data-theme=dark] .chroma .ss{color:#ce9178}
+:root[data-theme=dark] .chroma .m{color:#b5cea8}
+:root[data-theme=dark] .chroma .mb{color:#b5cea8}
+:root[data-theme=dark] .chroma .mf{color:#b5cea8}
+:root[data-theme=dark] .chroma .mh{color:#b5cea8}
+:root[data-theme=dark] .chroma .mi{color:#b5cea8}
+:root[data-theme=dark] .chroma .il{color:#b5cea8}
+:root[data-theme=dark] .chroma .mo{color:#b5cea8}
+:root[data-theme=dark] .chroma .o{color:#d4d4d4}
+:root[data-theme=dark] .chroma .ow{color:#569cd6}
+:root[data-theme=dark] .chroma .p{color:#d4d4d4}
+:root[data-theme=dark] .chroma .c{color:#6a9955}
+:root[data-theme=dark] .chroma .ch{color:#6a9955}
+:root[data-theme=dark] .chroma .cm{color:#6a9955}
+:root[data-theme=dark] .chroma .c1{color:#6a9955}
+:root[data-theme=dark] .chroma .cs{color:#6a9955}
+:root[data-theme=dark] .chroma .cp{color:#c586c0}
+:root[data-theme=dark] .chroma .cpf{color:#ce9178}
+:root[data-theme=dark] .chroma .g{color:#d4d4d4}
+:root[data-theme=dark] .chroma .gd{color:#ce9178}
+:root[data-theme=dark] .chroma .ge{font-style:italic}
+:root[data-theme=dark] .chroma .gr{color:#f44747}
+:root[data-theme=dark] .chroma .gh{color:#569cd6;font-weight:bold}
+:root[data-theme=dark] .chroma .gi{color:#b5cea8}
+:root[data-theme=dark] .chroma .go{color:#d4d4d4}
+:root[data-theme=dark] .chroma .gp{color:#569cd6}
+:root[data-theme=dark] .chroma .gu{color:#569cd6;font-weight:bold}
+:root[data-theme=dark] .chroma .gt{color:#f44747}
+:root[data-theme=dark] .chroma .gl{text-decoration:underline}
+:root[data-theme=dark] .chroma .w{color:#3b3b3b}
