@@ -11,6 +11,7 @@
   <link rel="canonical" href="{{ .Permalink }}">
   {{ range .AlternativeOutputFormats }}{{ if eq .MediaType.SubType "rss" }}<link rel="{{ .Rel }}" type="{{ .MediaType.Type }}" href="{{ .RelPermalink }}">{{ end }}{{ end }}
   <script>try{document.documentElement.dataset.theme=localStorage.getItem('noteharbor-theme')||'dark'}catch(e){}</script>
+  {{ with resources.Get "fonts/MonaSansVF.woff2" }}{{ $font := . }}<link rel="preload" href="{{ $font.RelPermalink }}" as="font" type="font/woff2" crossorigin><style>@font-face{font-family:"Mona Sans";src:url({{ $font.RelPermalink }}) format("woff2");font-weight:200 900;font-style:normal;font-display:swap;font-synthesis:none}</style>{{ end }}
   {{ with resources.Get "generated/ui.css" }}{{ $v := . | fingerprint }}<link rel="stylesheet" href="{{ $v.RelPermalink }}" integrity="{{ $v.Data.Integrity }}">{{ end }}
   {{ with resources.Get "css/main.css" }}{{ $v := . | minify | fingerprint }}<link rel="stylesheet" href="{{ $v.RelPermalink }}" integrity="{{ $v.Data.Integrity }}">{{ end }}
   {{ with resources.Get "css/chroma.css" }}{{ $v := . | minify | fingerprint }}<link rel="stylesheet" href="{{ $v.RelPermalink }}" integrity="{{ $v.Data.Integrity }}">{{ end }}

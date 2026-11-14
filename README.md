@@ -70,3 +70,5 @@ Markdown 可以使用 Hugo front matter 设置 `title`、`description`、`date` 
 ## 许可证
 
 [MIT](LICENSE)。
+
+主题内置 [Mona Sans](https://github.com/github/mona-sans) 可变字体（SIL Open Font License 1.1），许可证全文见 [assets/fonts/LICENSE-MonaSans.txt](assets/fonts/LICENSE-MonaSans.txt)。
