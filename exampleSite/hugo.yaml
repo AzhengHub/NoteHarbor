@@ -1,37 +1,92 @@
+# NoteHarbor 示例站点配置
+#
+# 这份文件同时是主题的配置参考：下面每一项都对应主题实际支持的能力。
+# 本地预览：npm run serve（等价于 hugo server --config exampleSite/hugo.yaml）
+# 静态构建：npm run build（输出到 public/）
+
+# 站点根地址。部署到子路径时写成 https://example.com/docs/ 这样的完整地址。
 baseURL: http://localhost:1313/
+
+# 站点标题：显示在左上角、浏览器标签页和搜索结果里。
 title: NoteHarbor
+
+# 示例站点的内容目录。真实站点一般直接用默认的 content/。
 contentDir: exampleSite/content
+
+# 示例站点的静态资源目录（头像等）。真实站点一般用默认的 static/。
+staticDir: exampleSite/static
+
+# 默认语言与语言代码。界面文案是中文，建议保持 zh / zh-CN。
 defaultContentLanguage: zh
 languageCode: zh-CN
 enableRobotsTXT: true
 
 params:
+  # 站点描述：首页副标题、<meta name="description"> 和 RSS 描述都会用到。
   description: 一个属于你自己的文档与笔记空间。
+
+  # 可选头像：填写图片地址后显示在站点标题左侧，删除这一行或留空即关闭。
+  # 图片放在 staticDir 下，例如 exampleSite/static/avatar.svg → /avatar.svg
+  avatar: /avatar.svg
+
+  # 顶部右上角的 GitHub 图标；删除或留空则不显示。
   github: https://github.com/AzhengHub/NoteHarbor
-  version: v0.1.0
+
+  # 是否在文章标题下显示“约 N 分钟阅读”。
   showReadingTime: true
+
+  # 首页终端提示符的站点级默认值，可被页面 front matter 里的 terminal 覆盖。
+  terminal:
+    user: demo
+    host: example.com
+    shell: bash
+    # 设为 false 可全局关闭打字动画，只保留静态终端窗口。
+    enable: true
+
+  # 页脚：两段文字都可以留空。align 可选 center / between / left / right。
+  footer:
+    copyright: "© 2026 NoteHarbor"
+    poweredby: "Powered by Hugo"
+    align: center
+
+  # 首页。省略 cards 时会自动列出各内容分区；title / description 覆盖首页大标题。
   home:
+    title: NoteHarbor
+    description: 文档与笔记主题 · 这个示例站点就是它的使用手册
     cards:
       - path: /docs/getting-started
         title: 开始使用
-        description: 认识 NoteHarbor，搭建属于自己的知识空间。
-      - path: /docs/writing
-        title: 书写与排版
-        description: 用 Markdown 记录想法，让内容保持简单。
-      - path: /blog
-        title: 随笔与文章
-        description: 给更长的思考，一处从容展开的地方。
+        description: 安装依赖、本地预览，以及作为主题引入你的站点。
+      - path: /docs/configuration
+        title: 配置参考
+        description: 一份带注释的完整配置，逐项说明每个参数。
+      - path: /docs/home
+        title: 首页与终端
+        description: 卡片式首页、终端动画，以及如何开启或关闭。
+      - path: /docs/avatar
+        title: 可选头像
+        description: 在站点标题旁显示头像，随时可以关掉。
+      - path: /docs/shortcodes
+        title: 短代码
+        description: 提示块、折叠块和终端窗口的用法。
+      - path: /docs/deploy
+        title: 构建与部署
+        description: 静态构建、子路径部署和 Docker 镜像。
 
+# JSON 输出是本地搜索索引的来源，必须保留。
 outputs:
   home: [HTML, RSS, JSON]
   section: [HTML, RSS]
 
+# 正文渲染设置。
 markup:
   goldmark:
     renderer:
+      # 允许 Markdown 里直接写 HTML。
       unsafe: true
   highlight:
     noClasses: false
   tableOfContents:
+    # 右侧“本页内容”收集二级、三级标题。
     startLevel: 2
     endLevel: 3
