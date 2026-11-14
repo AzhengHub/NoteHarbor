@@ -42,6 +42,16 @@
     });
   });
   const tocLinks = [...document.querySelectorAll('.toc nav a[href^="#"]')];
+  // Jump straight to the heading instead of animating the scroll.
+  for (const link of document.querySelectorAll('.toc a[href^="#"]')) {
+    link.addEventListener('click', event => {
+      const target = document.getElementById(decodeURIComponent(link.hash.slice(1)));
+      if (!target) return;
+      event.preventDefault();
+      target.scrollIntoView({ behavior: 'instant', block: 'start' });
+      try { history.pushState(null, '', link.hash); } catch (_) {}
+    });
+  }
   const sections = tocLinks.map(link => document.getElementById(decodeURIComponent(link.hash.slice(1)))).filter(Boolean);
   if ('IntersectionObserver' in window && sections.length) {
     const observer = new IntersectionObserver(entries => {
