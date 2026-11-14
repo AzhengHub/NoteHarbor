@@ -64,4 +64,14 @@
     });
   }
   try { localStorage.setItem(NAV_KEY, JSON.stringify(navState)); } catch (_) {}
+  // Bring the current page's nav entry into view, so deep sections do not leave
+  // the reader staring at the top of a long sidebar after every click.
+  const activeLink = sidebar && sidebar.querySelector('.nav-link.is-active');
+  if (activeLink) {
+    const box = sidebar.getBoundingClientRect();
+    const link = activeLink.getBoundingClientRect();
+    if (link.top < box.top + 8 || link.bottom > box.bottom - 8) {
+      sidebar.scrollTop += link.top - box.top - (box.height - link.height) / 2;
+    }
+  }
 })();
