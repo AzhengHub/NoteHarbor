@@ -1,5 +1,5 @@
 {{ define "main" }}<article class="article">
-  {{ partial "breadcrumb.html" . }}
-  <header class="article-header"><h1>{{ .Title }}</h1>{{ with .Description }}<p class="article-description">{{ . }}</p>{{ end }}<div class="article-meta">{{ if .Date }}<span>{{ .Date.Format "2006.01.02" }}</span>{{ end }}{{ if site.Params.showReadingTime }}<span>约 {{ .ReadingTime }} 分钟阅读</span>{{ end }}</div></header>
+  <h1 class="sr-only">{{ .Title }}</h1>
+  <header class="article-crumb">{{ partial "breadcrumb.html" . }}</header>
   <div class="prose">{{ .Content }}</div>
 </article>{{ end }}
