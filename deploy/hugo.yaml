@@ -1,0 +1,48 @@
+# Site configuration used by the container build (deploy/Dockerfile).
+# Edit the values below for your own site.
+baseURL: http://localhost/
+title: My Docs
+defaultContentLanguage: zh
+languageCode: zh-CN
+enableRobotsTXT: true
+
+params:
+  description: Documentation built with NoteHarbor.
+  showReadingTime: true
+  # Home terminal blocks. Disable the typing animation with enable: false;
+  # override the prompt per page through front matter (terminal.user/host/prompt).
+  terminal:
+    enable: true
+    user: user
+    host: localhost
+
+outputs:
+  home: [HTML, RSS, JSON]
+  section: [HTML, RSS]
+
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
+  highlight:
+    noClasses: false
+  tableOfContents:
+    startLevel: 2
+    endLevel: 3
+
+# Images usually sit next to the markdown files, so publish them as static too.
+module:
+  mounts:
+    - source: layouts
+      target: layouts
+    - source: assets
+      target: assets
+    - source: content
+      target: content
+    - source: content
+      target: static
+      files:
+        - "**.jpg"
+        - "**.png"
+        - "**.svg"
+        - "**.webp"
