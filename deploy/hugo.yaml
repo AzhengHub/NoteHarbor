@@ -9,6 +9,10 @@ enableRobotsTXT: true
 params:
   description: Documentation built with NoteHarbor.
   showReadingTime: true
+  # Footer text; the poweredBy line is hidden when set to an empty string.
+  footer:
+    copyright: "© 2026 My Docs"
+    poweredby: "Powered by Hugo"
   # Home terminal blocks. Disable the typing animation with enable: false;
   # override the prompt per page through front matter (terminal.user/host/prompt).
   terminal:

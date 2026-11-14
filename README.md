@@ -67,6 +67,17 @@ Markdown 可以使用 Hugo front matter 设置 `title`、`description`、`date` 
 
 **这些选项不是访问控制。** Hugo 仍然会生成页面，知道网址的人仍可访问；私有仓库里的文档只要被构建并部署到公开站点，就会变成公开内容。不要将不希望公开的内容放进公开站点的构建产物。主题与个人内容分仓维护时，请在构建流程中明确选择要发布的内容。
 
+## 页脚
+
+页脚两段文字都在站点配置里改：
+
+```yaml
+params:
+  footer:
+    copyright: "© 2026 你的站点"
+    poweredby: "Powered by Hugo"   # 设为空字符串可隐藏
+```
+
 ## 首页终端
 
 首页 `_index.md` 可以只用 `terminal`、`termcmd`、`termout` 短代码搭一个逐字打印的终端窗口。提示符在页面 front matter 或站点参数里配置：

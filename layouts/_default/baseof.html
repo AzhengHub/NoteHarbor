@@ -34,7 +34,8 @@
     <main id="main" class="main-content">{{ block "main" . }}{{ end }}</main>
     <aside class="toc" aria-label="本页目录">{{ partial "toc.html" . }}</aside>
   </div>
-  <footer class="footer"><span>© {{ now.Year }} {{ site.Title }}</span><span>Powered by Hugo</span></footer>
+  {{- $footer := site.Params.footer | default dict -}}
+  <footer class="footer"><span>{{ $footer.copyright | default (printf "© %d %s" now.Year site.Title) }}</span>{{ if isset $footer "poweredby" }}<span>{{ $footer.poweredby }}</span>{{ else }}<span>Powered by Hugo</span>{{ end }}</footer>
   {{ with resources.Get "js/main.js" }}{{ $v := . | minify | fingerprint }}<script defer src="{{ $v.RelPermalink }}" integrity="{{ $v.Data.Integrity }}"></script>{{ end }}
   {{ with resources.Get "generated/search.js" }}{{ $v := . | fingerprint }}<script defer src="{{ $v.RelPermalink }}" integrity="{{ $v.Data.Integrity }}"></script>{{ end }}
 </body>
