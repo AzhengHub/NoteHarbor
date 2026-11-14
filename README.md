@@ -26,7 +26,7 @@ npm run serve
 要在指定的内网地址和端口预览，可以将 Hugo 参数传给命令：
 
 ```bash
-npm run serve -- --bind 10.0.0.100 --port 81 --baseURL http://10.0.0.100:81/ --appendPort=false
+npm run serve -- --bind 192.168.1.10 --port 81 --baseURL http://192.168.1.10:81/ --appendPort=false
 ```
 
 ## 在自己的 Hugo 站点中使用
@@ -66,6 +66,31 @@ params:
 Markdown 可以使用 Hugo front matter 设置 `title`、`description`、`date` 和 `weight`。页面设置 `exclude_search: true` 可从搜索索引中排除；设置 `private: true` 也会排除搜索、RSS 和站点地图，并添加 `noindex` 元数据。
 
 **这些选项不是访问控制。** Hugo 仍然会生成页面，知道网址的人仍可访问；私有仓库里的文档只要被构建并部署到公开站点，就会变成公开内容。不要将不希望公开的内容放进公开站点的构建产物。主题与个人内容分仓维护时，请在构建流程中明确选择要发布的内容。
+
+## 首页终端
+
+首页 `_index.md` 可以只用 `terminal`、`termcmd`、`termout` 短代码搭一个逐字打印的终端窗口。提示符在页面 front matter 或站点参数里配置：
+
+```yaml
+terminal:
+  user: user
+  host: localhost
+  prompt: "user@host:~$"   # 可选，直接覆盖 user@host
+```
+
+- `{{</* terminal static="true" */>}}`：只展示终端窗口，不播放打字动画
+- 站点参数 `params.terminal.enable: false`：全局关闭动画
+- 窗口里的内容是普通 Markdown，可以自由替换成任何自定义内容
+
+## Docker 部署
+
+把内容放在仓库根目录的 `content/`（可用 `git submodule` 引入），然后构建单镜像（静态文件 + Caddy）运行：
+
+```bash
+SITE_URL=https://docs.example.com/ docker compose -f deploy/compose.yaml up -d --build
+```
+
+默认访问 `http://localhost:8080/`，详见 [deploy/README.md](deploy/README.md)。镜像约 135 MB，运行内存约 15 MB。
 
 ## 许可证
 
