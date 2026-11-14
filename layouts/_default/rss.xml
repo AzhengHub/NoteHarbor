@@ -3,7 +3,7 @@
 {{- $pages = first 50 $pages -}}
 {{- printf "<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"yes\"?>" | safeHTML }}
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel>
-<title>{{ .Title }}</title><link>{{ .Permalink }}</link><description>{{ .Description | default site.Params.description | default .Title }}</description><language>{{ site.Language.LanguageCode | default site.Language.Lang }}</language>
+<title>{{ .Title | transform.XMLEscape }}</title><link>{{ .Permalink }}</link><description>{{ .Description | default site.Params.description | default .Title | transform.XMLEscape }}</description><language>{{ site.Language.LanguageCode | default site.Language.Lang }}</language>
 {{ with .OutputFormats.Get "RSS" }}<atom:link href="{{ .Permalink }}" rel="self" type="application/rss+xml" />{{ end }}
-{{ range $pages }}<item><title>{{ .Title }}</title><link>{{ .Permalink }}</link><guid>{{ .Permalink }}</guid>{{ with .Date }}<pubDate>{{ .Format "Mon, 02 Jan 2006 15:04:05 -0700" }}</pubDate>{{ end }}<description>{{ .Summary | plainify }}</description></item>{{ end }}
+{{ range $pages }}<item><title>{{ .Title | transform.XMLEscape }}</title><link>{{ .Permalink }}</link><guid>{{ .Permalink }}</guid>{{ with .Date }}<pubDate>{{ .Format "Mon, 02 Jan 2006 15:04:05 -0700" }}</pubDate>{{ end }}<description>{{ .Description | default site.Params.description | default .Title | transform.XMLEscape }}</description></item>{{ end }}
 </channel></rss>
