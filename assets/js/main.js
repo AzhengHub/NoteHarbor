@@ -17,10 +17,12 @@
     document.documentElement.dataset.theme = theme;
     try { localStorage.setItem('noteharbor-theme', theme); } catch (_) {}
   });
+  const COPY_ICON = '<svg viewBox="0 0 16 16" aria-hidden="true"><rect x="5.5" y="5.5" width="8" height="9" rx="1.5"/><path d="M10.5 5.5V3.5A1.5 1.5 0 0 0 9 2H3.5A1.5 1.5 0 0 0 2 3.5V9a1.5 1.5 0 0 0 1.5 1.5h2"/></svg>';
+  const DONE_ICON = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="m3 8.5 3.3 3.3L13 5.2"/></svg>';
   document.querySelectorAll('.code-block').forEach(block => {
     const button = document.createElement('button');
-    button.type = 'button'; button.className = 'copy-code'; button.setAttribute('aria-label', '复制代码'); button.textContent = '复制';
-    block.prepend(button);
+    button.type = 'button'; button.className = 'copy-code'; button.title = '复制代码'; button.setAttribute('aria-label', '复制代码'); button.innerHTML = COPY_ICON;
+    (block.querySelector('.code-head') || block).append(button);
     button.addEventListener('click', async () => {
       const text = block.querySelector('pre')?.innerText || '';
       let input;
@@ -30,8 +32,12 @@
           input = document.createElement('textarea'); input.value = text; input.style.cssText = 'position:fixed;opacity:0';
           document.body.appendChild(input); input.select(); if (!document.execCommand('copy')) throw Error('copy failed');
         }
-        button.textContent = '已复制'; setTimeout(() => { button.textContent = '复制'; }, 2000);
-      } catch (_) { button.textContent = '复制失败'; }
+        button.innerHTML = DONE_ICON; button.title = '已复制';
+        setTimeout(() => { button.innerHTML = COPY_ICON; button.title = '复制代码'; }, 1600);
+      } catch (_) {
+        button.title = '复制失败';
+        setTimeout(() => { button.title = '复制代码'; }, 1600);
+      }
       finally { if (input) input.remove(); }
     });
   });
