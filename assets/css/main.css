@@ -36,7 +36,7 @@
 .prose li{margin:.25em 0}
 .prose li>p{margin-top:16px}
 .prose img{max-width:100%;height:auto}
-.prose hr{height:.25em;margin:24px 0;padding:0;border:0;background:var(--border)}
+.prose hr{height:.25em;margin:24px 0;padding:0;border:0;background:var(--border)}.prose>hr:first-child{display:none}
 .prose blockquote{margin:0 0 16px;padding:0 1em;color:var(--muted-foreground);border-left:.25em solid var(--primary)}
 .prose :not(pre)>code{font-family:var(--font-mono);font-size:85%;padding:.2em .4em;border:0;border-radius:6px;background:var(--muted)}
 .prose table{display:block;width:max-content;max-width:100%;overflow:auto;border-collapse:collapse;margin:0 0 16px;font-size:1em}
