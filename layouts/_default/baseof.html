@@ -37,6 +37,7 @@
   {{- $footer := site.Params.footer | default dict -}}
   <footer class="footer footer--{{ $footer.align | default "center" }}"><span>{{ $footer.copyright | default (printf "© %d %s" now.Year site.Title) }}</span>{{ if isset $footer "poweredby" }}<span>{{ $footer.poweredby }}</span>{{ else }}<span>Powered by Hugo</span>{{ end }}</footer>
   {{ with resources.Get "js/main.js" }}{{ $v := . | minify | fingerprint }}<script defer src="{{ $v.RelPermalink }}" integrity="{{ $v.Data.Integrity }}"></script>{{ end }}
+  {{ with resources.Get "js/steps.js" }}{{ $v := . | minify | fingerprint }}<script defer src="{{ $v.RelPermalink }}" integrity="{{ $v.Data.Integrity }}"></script>{{ end }}
   {{ with resources.Get "generated/search.js" }}{{ $v := . | fingerprint }}<script defer src="{{ $v.RelPermalink }}" integrity="{{ $v.Data.Integrity }}"></script>{{ end }}
 </body>
 </html>

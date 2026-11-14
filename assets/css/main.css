@@ -105,3 +105,11 @@
 .term-cursor{display:inline-block;width:8px;height:16px;margin-left:2px;vertical-align:text-bottom;background:#e8c47c;animation:term-blink 1.1s steps(2,start) infinite}
 @keyframes term-blink{50%{opacity:0}}
 .term-static .term-cursor{animation:none}
+.steps{counter-reset:steps;margin:24px 0}
+.steps-step{position:relative;padding-left:52px;padding-bottom:28px}
+.steps-step:before{counter-increment:steps;content:counter(steps);position:absolute;left:0;top:0;width:32px;height:32px;display:flex;align-items:center;justify-content:center;border:1.5px solid var(--muted-foreground);border-radius:50%;font-size:15px;font-weight:500;line-height:1;color:var(--foreground)}
+.steps-step:not(:last-of-type):after{content:"";position:absolute;left:15px;top:40px;bottom:8px;border-left:2px dotted var(--muted-foreground)}
+.steps-step:last-of-type{padding-bottom:0}
+.steps-step__title{font-weight:600;font-size:1.05em;line-height:32px;color:var(--foreground)}
+.steps-step__subtitle{font-style:italic;font-size:.875em;color:var(--muted-foreground);margin:2px 0 10px}
+.steps-step__content>p:last-child{margin-bottom:0}
