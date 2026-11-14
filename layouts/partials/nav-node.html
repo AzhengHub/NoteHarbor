@@ -4,7 +4,7 @@
 {{- $active := eq $node $current -}}{{- $activePath := or $active ($current.IsDescendant $node) -}}
 <li>
 {{- if $category }}
-  <details class="nav-group"{{ if $activePath }} open{{ end }}>
+  <details class="nav-group"{{ if $activePath }} open{{ end }} data-nav-key="{{ $node.RelPermalink }}">
     <summary><span>{{ $node.LinkTitle }}</span><svg class="nav-chevron" viewBox="0 0 16 16" aria-hidden="true"><path d="M6 3.5 10.5 8 6 12.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></summary>
     <ul>
       {{- if ne (trim $node.RawContent " \t\r\n") "" }}<li><a href="{{ $node.RelPermalink }}" class="nav-link{{ if $active }} is-active{{ end }}"{{ if $active }} aria-current="page"{{ end }}>概览</a></li>{{ end }}

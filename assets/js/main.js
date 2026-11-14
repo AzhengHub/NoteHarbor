@@ -45,4 +45,23 @@
     }, { rootMargin: '-80px 0px -70% 0px' });
     sections.forEach(section => observer.observe(section));
   }
+  // Keep sidebar sections open across page loads; the server only opens the
+  // current path, so without this every navigation collapses the rest.
+  const NAV_KEY = 'noteharbor-nav-open';
+  let navState = {};
+  try { navState = JSON.parse(localStorage.getItem(NAV_KEY) || '{}') || {}; } catch (_) {}
+  const navGroups = [...document.querySelectorAll('.nav-group[data-nav-key]')];
+  for (const group of navGroups) {
+    const key = group.dataset.navKey;
+    if (!group.querySelector('[aria-current="page"]') && key in navState) group.open = navState[key];
+  }
+  for (const group of navGroups) {
+    const key = group.dataset.navKey;
+    navState[key] = group.open;
+    group.addEventListener('toggle', () => {
+      navState[key] = group.open;
+      try { localStorage.setItem(NAV_KEY, JSON.stringify(navState)); } catch (_) {}
+    });
+  }
+  try { localStorage.setItem(NAV_KEY, JSON.stringify(navState)); } catch (_) {}
 })();
