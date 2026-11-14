@@ -1,6 +1,10 @@
 {{ define "main" }}
 {{ $home := site.Params.home | default dict }}
-{{ $firstSection := false }}{{ with site.Home.Sections.ByWeight }}{{ $firstSection = index . 0 }}{{ end }}
+{{ $sections := site.Home.Sections.ByWeight }}
+{{ $firstSection := false }}{{ with $sections }}{{ $firstSection = index . 0 }}{{ end }}
+{{ $pages := where site.RegularPages "Params.private" "ne" true }}
+{{ $listed := where $pages "Params.exclude_search" "ne" true }}
+{{ $dated := slice }}{{ range $listed }}{{ if gt .Date.Year 2000 }}{{ $dated = $dated | append . }}{{ end }}{{ end }}
 <div class="home">
   <header class="home-header">
     <h1>{{ $home.title | default site.Title }}</h1>
@@ -14,13 +18,15 @@
       {{ with $home.cards }}
         {{ range $card := . }}{{ with site.GetPage $card.path }}<a href="{{ .RelPermalink }}" class="feature-card"><strong>{{ $card.title | default .LinkTitle }}</strong><span>{{ $card.description | default .Description }}</span></a>{{ end }}{{ end }}
       {{ else }}
-        {{ range first 3 (where site.RegularPages "Params.private" "ne" true).ByDate.Reverse }}<a href="{{ .RelPermalink }}" class="feature-card"><strong>{{ .LinkTitle }}</strong><span>{{ .Description | default (.Plain | truncate 80) }}</span></a>{{ end }}
+        {{ range $sections }}<a href="{{ .RelPermalink }}" class="feature-card"><strong>{{ .LinkTitle }}</strong><span>{{ .Description | default (printf "%d 篇" (len .RegularPagesRecursive)) }}</span></a>{{ end }}
       {{ end }}
     </div>
   </section>
+  {{ with $dated }}
   <section class="home-section">
     <h2>最近更新</h2>
-    <div class="recent-list">{{ range first 5 (where (where site.RegularPages "Params.private" "ne" true) "Params.exclude_search" "ne" true).ByDate.Reverse }}<a href="{{ .RelPermalink }}"><span class="recent-name"><strong>{{ .LinkTitle }}</strong><small>{{ .Description | default .CurrentSection.LinkTitle }}</small></span><span class="recent-date">{{ if .Date }}{{ .Date.Format "2006-01-02" }}{{ end }}</span></a>{{ end }}</div>
+    <div class="recent-list">{{ range first 5 (sort . "Date" "desc") }}<a href="{{ .RelPermalink }}"><span class="recent-name"><strong>{{ .LinkTitle }}</strong><small>{{ .Description | default .CurrentSection.LinkTitle }}</small></span><span class="recent-date">{{ .Date.Format "2006-01-02" }}</span></a>{{ end }}</div>
   </section>
+  {{ end }}
 </div>
 {{ end }}
