@@ -74,4 +74,35 @@
       sidebar.scrollTop += link.top - box.top - (box.height - link.height) / 2;
     }
   }
+  // Links to a section index (the terminal tree, the "文章目录" rows) would only
+  // show another list of pages. Expand the matching sidebar group instead.
+  const groupsByPath = new Map();
+  for (const group of navGroups) {
+    try { groupsByPath.set(new URL(group.dataset.navKey, location.origin).pathname.replace(/\/$/, ''), group); } catch (_) {}
+  }
+  function expandGroup(href) {
+    if (!href || sidebar.offsetParent === null) return false;
+    let url;
+    try { url = new URL(href, location.href); } catch (_) { return false; }
+    if (url.origin !== location.origin) return false;
+    const group = groupsByPath.get(url.pathname.replace(/\/$/, ''));
+    if (!group) return false;
+    for (let parent = group.parentElement; parent; parent = parent.parentElement) {
+      if (parent.classList && parent.classList.contains('nav-group')) parent.open = true;
+    }
+    group.open = true;
+    const summary = group.querySelector('summary');
+    const box = sidebar.getBoundingClientRect();
+    const row = summary.getBoundingClientRect();
+    sidebar.scrollTop += row.top - box.top - (box.height - row.height) / 2;
+    group.classList.add('is-nav-flash');
+    setTimeout(() => group.classList.remove('is-nav-flash'), 1200);
+    return true;
+  }
+  document.addEventListener('click', event => {
+    if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    const link = event.target.closest && event.target.closest('a[href]');
+    if (!link || !link.closest('.term-window, .article-list')) return;
+    if (expandGroup(link.getAttribute('href'))) event.preventDefault();
+  });
 })();
