@@ -17,12 +17,13 @@
     document.documentElement.dataset.theme = theme;
     try { localStorage.setItem('noteharbor-theme', theme); } catch (_) {}
   });
-  const COPY_ICON = '<svg viewBox="0 0 16 16" aria-hidden="true"><rect x="5.5" y="5.5" width="8" height="9" rx="1.5"/><path d="M10.5 5.5V3.5A1.5 1.5 0 0 0 9 2H3.5A1.5 1.5 0 0 0 2 3.5V9a1.5 1.5 0 0 0 1.5 1.5h2"/></svg>';
-  const DONE_ICON = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="m3 8.5 3.3 3.3L13 5.2"/></svg>';
+  /*! Font Awesome Free 6.7.2 by Fonticons, Inc. (CC BY 4.0, https://fontawesome.com/license/free). */
+  const COPY_ICON = '<svg viewBox="0 0 448 512" aria-hidden="true"><path fill="currentColor" d="M208 0L332.1 0c12.7 0 24.9 5.1 33.9 14.1l67.9 67.9c9 9 14.1 21.2 14.1 33.9L448 336c0 26.5-21.5 48-48 48l-192 0c-26.5 0-48-21.5-48-48l0-288c0-26.5 21.5-48 48-48zM48 128l80 0 0 64-64 0 0 256 192 0 0-32 64 0 0 48c0 26.5-21.5 48-48 48L48 512c-26.5 0-48-21.5-48-48L0 176c0-26.5 21.5-48 48-48z"/></svg>';
+  const DONE_ICON = '<svg viewBox="0 0 16 16" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="m3 8.5 3.3 3.3L13 5.2"/></svg>';
   document.querySelectorAll('.code-block').forEach(block => {
     const button = document.createElement('button');
     button.type = 'button'; button.className = 'copy-code'; button.title = '复制代码'; button.setAttribute('aria-label', '复制代码'); button.innerHTML = COPY_ICON;
-    (block.querySelector('.code-head') || block).append(button);
+    (block.querySelector(':scope > .highlight') || block).append(button);
     button.addEventListener('click', async () => {
       const text = block.querySelector('pre')?.innerText || '';
       let input;

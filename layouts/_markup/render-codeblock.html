@@ -1,1 +1,6 @@
-<div class="code-block"><div class="code-head">{{ with .Attributes.filename }}<span class="code-filename">{{ . }}</span>{{ else }}<span class="code-lang">{{ .Type | default "text" }}</span>{{ end }}</div>{{ highlight .Inner .Type "" }}</div>
+<div class="code-block">
+  {{- with .Attributes.filename }}
+    <div class="code-head"><span class="code-filename">{{ . }}</span></div>
+  {{- end }}
+  {{- highlight .Inner .Type "" }}
+</div>
