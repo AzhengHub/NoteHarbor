@@ -22,10 +22,10 @@
     <a class="brand" href="{{ site.Home.RelPermalink }}">{{ with site.Params.avatar }}<img class="brand-avatar" src="{{ . | relURL }}" alt="" width="40" height="40" loading="eager" decoding="async">{{ end }}<span class="brand-name">{{ site.Title }}</span></a>
     <div class="header-right">
       <button class="mobile-menu" type="button" aria-label="文档目录" aria-expanded="false" aria-controls="sidebar">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M9 6h11M9 12h11M9 18h11M4 6h.01M4 12h.01M4 18h.01"/></svg>目录
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M9 6h11M9 12h11M9 18h11M4 6h.01M4 12h.01M4 18h.01"/></svg>目录
       </button>
       <button class="header-more" type="button" aria-label="更多操作" aria-expanded="false" aria-controls="header-actions">
-        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="5" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="19" cy="12" r="1.6"/></svg>
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/></svg>
       </button>
       <div id="header-actions" class="header-actions">
         {{ with site.Home.OutputFormats.Get "JSON" }}<div id="noteharbor-search" class="header-search" data-index="{{ .RelPermalink }}" data-title="{{ site.Title }}"></div>{{ end }}
