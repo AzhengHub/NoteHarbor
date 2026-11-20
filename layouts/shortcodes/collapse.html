@@ -1,1 +1,7 @@
-<details class="collapse-block"><summary>{{ .Get "summary" | default "点击展开" | markdownify }}</summary><div>{{ .Inner | markdownify }}</div></details>
+<details class="collapse-block">
+  <summary>
+    {{ .Get "summary" | default "点击展开" | markdownify }}
+    {{ with .Get "badge" }}<span class="collapse-badge">{{ . }}</span>{{ end }}
+  </summary>
+  <div>{{ .Inner | markdownify }}</div>
+</details>

@@ -86,10 +86,11 @@
   .code-block:hover > .copy-code,.code-block > .copy-code:focus-visible{opacity:1}
 }
 .collapse-block{border:1px solid var(--border);border-radius:6px;margin:0 0 16px;overflow:hidden;background:var(--surface)}
-.collapse-block summary{padding:12px 16px;cursor:pointer;font-weight:600;background:var(--muted);list-style:none}
-.collapse-block summary::-webkit-details-marker{display:none}
-.collapse-block summary::after{content:'展开';float:right;color:var(--muted-foreground);font-size:12px;font-weight:400}
-.collapse-block[open] summary::after{content:'收起'}
+.collapse-block>summary{position:relative;padding:12px 16px;padding-inline-end:38px;cursor:pointer;font-weight:600;background:var(--muted);list-style:none}
+.collapse-block>summary::-webkit-details-marker{display:none}
+.collapse-block>summary::after{content:'';position:absolute;inset-inline-end:18px;inset-block-start:50%;width:9px;height:9px;color:var(--muted-foreground);border:solid currentColor;border-width:0 2px 2px 0;transform:translateY(-50%) rotate(-45deg)}
+.collapse-block[open]>summary::after{transform:translateY(-50%) rotate(45deg)}
+.collapse-badge{display:inline-block;margin-inline-start:8px;padding:0 6px;border:1px solid var(--border);border-radius:999px;background:var(--surface);color:var(--muted-foreground);font-size:12px;font-weight:400}
 .collapse-block>div{padding:12px 16px}
 .alert-block{margin:0 0 16px;padding:8px 16px;border:0;border-left:.25em solid var(--primary);border-radius:6px;background:var(--accent)}
 .alert-block>strong{display:block;margin-bottom:2px;color:var(--primary);font-size:.875em}
